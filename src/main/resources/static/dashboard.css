@@ -1,0 +1,139 @@
+.dashboard-container{
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+.stat-value {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 5px 0 0;
+}
+
+.category-row {
+    margin-bottom: 12px;
+}
+
+.category-row-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.bar-bg {
+    background-color: #eee;
+    border-radius: 5px;
+    height: 8px;
+}
+
+.bar-fill {
+    background-color: #4CAF50;
+    height: 8px;
+    border-radius: 5px;
+}
+
+.nav-links {
+    margin-bottom: 20px;
+    display: flex;
+    gap:10px;
+    justify-content: center;
+}
+.nav-links a {
+    margin-right: 15px;
+}
+
+.nav-links a {
+    margin-right: 10px;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 6px rgba(0,0,0, 0.08);
+    text-decoration: none;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* bar ko 4 ota rang purano green lai override garcha */
+.bar-fill.c0 {background-color: #7F77DD;}
+.bar-fill.c1 {background-color: #D85A30;}   /*coral*/
+.bar-fill.c2 {background-color: #1D9E75;}   /*teal*/
+.bar-fill.c3 {background-color: #EF9F27;}   /*amber*/
+
+
+/* by category ko white card */
+.panel {
+    background-color: white;
+    border-radius: 10px;
+    padding: 16px 18px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.panel-title,.section-title {
+    margin: 0 0 14px;
+    color: #26215c;
+}
+
+/*amount right one line */
+.category-amount {
+    font-weight: bold;
+    white-space: nowrap;
+
+}
+
+/*bar width ma */
+.bar-bg {height: 10px; border-radius: 5px;}
+.bar-fill {height: 10px; border-radius: 5px;}
+
+
+/*chart ko size ko lagi */
+.chart-wrap {
+    position: relative;
+    width: 320px;
+    height: 320px;
+
+    margin: 0 auto; /*center ma */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

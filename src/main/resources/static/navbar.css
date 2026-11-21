@@ -1,0 +1,147 @@
+/*  top ko navbar purple */
+
+.navbar {
+    background-color: #534AB7;
+    padding: 12px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+    /*width: 100%;*/
+    /*box-sizing: border-box;*/
+}
+
+.navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.navbar-links a {
+    margin-right: 0; /*purano margin hataucha */
+    text-decoration: none;
+}
+
+/*dashboard ko text link */
+.nav-text {
+    color: #CECBF6;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.nav-text:hover,.nav-text.active {
+    background-color: #7F77DD;
+    color: white;
+    text-decoration: none;
+}
+
+/* my expenses ra add expenses ko shadow ma style */
+
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: white;
+    color: #534AB7;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: bold;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+
+.nav-btn:hover {
+    background-color: #EEEDFE;
+    text-decoration: none;
+}
+
+.nav-btn.active {
+    background-color: #EEEDFE;
+}
+
+
+.navbar .nav-account {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #3c3489;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 4px 4px 4px 14px;
+    flex-basis: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+
+}
+
+
+/*log in user ko name bold ma */
+.navbar .nav-user {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*style css form ko white card hatauney */
+.navbar .logout-form {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    max-width: none;
+    border-radius: 0;
+}
+
+/*logout button ko design */
+.navbar .logout-btn {
+    background-color: white;
+    color: #534AB7;
+    border: none;
+    padding: 6px 12px;
+    margin: 0;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    width: auto;
+}
+
+.navbar .logout-btn:hover {
+    background-color: #EEEDFE;
+}
+
+
+/*hamburger ma mobile herda width ma right side */
+@media(max-width: 600px) {
+    .navbar .nav-account {
+        justify-content: space-between;
+        padding: 6px 6px 6px 14px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

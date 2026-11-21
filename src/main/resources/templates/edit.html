@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Expense</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="preconnect" href="=https://font.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<!--<h1>Edit Expense</h1>-->
+<h2 class="form-title">Edit Expense</h2>
+<div th:replace="~{fragments :: navbar('edit')}"></div>
+<!--th actionma id pathaune yesle expense.id use garyo-->
+
+<h2 class="form-title">Edit Expense</h2>
+<form th:action="@{/expenses-page/edit/{id}(id=${expense.id})}" th:object="${expense}" method="post">
+
+
+    <label>Name:</label>
+    <input type="text" th:field="*{name}" required> <br> <br>
+
+    <label>Amount:</label>
+    <input type="number" th:field="*{amount}" required min="0"> <br> <br>
+
+    <label>Category:</label>
+<!--    <input type="text" th:field="*{category}" required> <br> <br>-->
+
+
+
+    <select th:field="*{category}" required>
+<!--        <option value="" disabled>Select Category</option> &lt;!&ndash;kehi select nagrda dekhiney&ndash;&gt;-->
+        <option value="">--Select Category</option>
+        <option value="Groceries">Groceries</option>
+        <option value="Transport">Transport</option>
+        <option value="Room Rent">Room Rent</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Health">Health</option>
+        <option value="Phone & Internet">Phone & Internet</option>
+        <option value="Baby">Baby</option>
+        <option value="Alcohol">Alcohol</option>
+        <option value="Travel">Travel</option>
+        <option value="Study & Learning">Study & Learning</option>
+        <option value="Others">Others</option>
+
+    </select>
+    <br><br>
+
+    <label>Date:</label>
+    <input type="datetime-local" th:field="*{date}" required> <br> <br>
+
+    <label>Description:</label>
+    <input type="text" th:field="*{description}" required> <br> <br>
+
+
+    <button type="submit" class="full-btn">Update Expense</button>
+
+    <a th:href="@{/expenses-page}">Back To List</a>
+
+</form>
+
+
+</body>
+</html>

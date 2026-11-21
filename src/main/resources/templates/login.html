@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport" co=devicentent="width">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="preconnect" href="=https://font.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<body class="login-page"> <!--login page ko design farak garna -->
+
+
+<!--th:action le login POST garcha security le afaiu handle garcha -->
+
+<form th:action="@{/login}" method="post">
+    <div class="login-logo">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7a2 2 0 0 1 2-2h13v4"/>
+            <path d="M3 7v11a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1H5a2 0 0 1-2-2z"/>
+            <circle cx="16" cy="14" r="1.2"/>
+        </svg>
+    </div>
+    <h2 class="form-title" style="text-align:center">Kharcha Tracker</h2>
+    <p class="login-sub">Ghar Ko Kharcha, Ek Thau Ma</p>
+
+    <!--galat password halyo bhaney-->
+    <p th:if="${param.error}" class="login-msg login-error">Username Or Password Milena .</p>
+    <!--logout garepachi-->
+    <p th:if="${param.logout}" class="login-msg login-ok fade-out">Logout Bhayo.</p>
+
+    <label>Username:</label>
+    <input type="text" name="username" required autofocus> <!--name="username" security ko lagi chaincha -->
+
+    <label>Password:</label>
+    <input type="password" name="password" required> <!--name ="password" security ko lagi chaincha -->
+
+    <button type="submit" class="full-btn">Login</button>
+
+
+</form>
+</body>
+</html>

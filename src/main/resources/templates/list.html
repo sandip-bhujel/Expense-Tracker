@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="preconnect" href="=https://font.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<h1>💴My Expenses</h1>
+<div th:replace="~{fragments :: navbar('list')}"></div>
+<!--<form th:action="@{/expenses-page}" method="get">-->
+<!--    <label>Filter by Category:</label>-->
+<!--    <input type="text" name="category" placeholder="e.g:Food">-->
+<!--    <button type="submit">Search</button>-->
+<!--    <a th:href="@{/expenses-page}">Clear Filter</a>-->
+<!--</form>-->
+
+<!--<form th:action="@{/expenses-page}" method="get">-->
+<!--    <label>Search by Month:</label>-->
+<!--    <input type="month" name="month" >-->
+<!--    <button type="submit">Search</button>-->
+<!--    <a th:href="@{/expenses-page}">Clear Filter</a>-->
+<!--</form>-->
+
+<div class="summary-bar">
+    <span>Total Spent</span>
+    <strong th:text=" ' ¥ ' + ${#numbers.formatDecimal(#aggregates.sum(expenses.![amount]) ?: 0, 0, 'COMMA', 0, 'POINT')}"></strong>
+</div>
+
+<!--filter haru ekline ma card ma -->
+<div class="filter-bar">
+    <form th:action="@{/expenses-page}" method="get">
+        <label>Category:</label>
+        <input type="text" name="category" placeholder="Example: Lunch">
+        <button type="submit">Search</button>
+    </form>
+
+    <form th:action="@{/expenses-page}" method="get">
+        <label>Date:</label>
+        <input type="date" name="date"> <!--calendar bata day chancha -->
+        <button type="submit">Search</button>
+    </form>
+
+
+    <form th:action="@{/expenses-page}" method="get">
+        <label>Month:</label>
+        <input type="month" name="month">
+        <button type="submit">Search</button>
+    </form>
+    <div class="filter-action">
+        <a th:href="@{/expenses-page(date=${#temporals.format(#temporals.createToday(), 'yyyy-MM-dd')})}">Today</a>
+        <a th:href="@{/expenses-page}" class="clear-link">Clear Filter</a>
+    </div>
+
+
+</div>
+
+
+<p th:if="${#lists.isEmpty(expenses)}" class="empty-msg">Kunai Expense Chaina Add Expense Bata Suru Garnuhos</p>
+
+<div class="expense-list">
+    <!--every expense ko lagi one card loop garauna -->
+    <div class="expense-card" th:each="expense : ${expenses}">
+
+        <div class="expense-main">
+
+            <p class="expense-title" th:text="${expense.description}"></p>
+            <p class="expense-meta">
+                <span class="badge" th:text="${expense.category}"></span> <!--category ko small badge-->
+                <span th:text="${#temporals.format(expense.date, 'yyyy-MM-dd HH:mm')}"></span>
+                &middot; <span th:text="${expense.name}"></span>
+            </p>
+
+
+        </div>
+        <div class="expense-side">
+            <p class="expense-amount"
+               th:text="'¥ ' + ${#numbers.formatDecimal(expense.amount,0, 'COMMA',0,'POINT')}"></p>
+            <div class="expense-actions">
+                <a th:href="@{/expenses-page/edit/{id}(id=${expense.id})}" class="btn-edit">Edit</a>
+                <!--onclick confirm birsera delete garda paila sodhney-->
+                <a th:href="@{/expenses-page/delete/{id}(id=${expense.id})}" class="btn-delete"
+                   onclick="return confirm('yo expense delete garney?')">Delete</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

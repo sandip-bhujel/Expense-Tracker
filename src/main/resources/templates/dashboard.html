@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" th:href="@{/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/navbar.css}">
+    <link rel="preconnect" href="=https://font.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <div th:replace="~{fragments :: navbar('dashboard')}"></div>
+
+    <h1>Dashboard</h1>
+
+    <div class="stats-grid">
+
+        <div class="stat-card accent-purple">
+            <p class="stat-label">Total Spent</p>
+            <p class="stat-value"
+               th:text="'¥ ' + ${#numbers.formatDecimal(total, 1, 'COMMA', 0, 'POINT')}">
+            </p>
+        </div>
+
+        <div class="stat-card accent-blue">
+            <p class="stat-label">Total Expenses</p>
+            <p class="stat-value" th:text="${#lists.size(expenses)}"></p>
+        </div>
+
+        <div class="stat-card accent-coral">
+            <p class="stat-label">This Month</p>
+            <p class="stat-value"
+               th:text="'¥ ' + ${#numbers.formatDecimal(monthTotal, 1, 'COMMA', 0, 'POINT')}">
+            </p>
+        </div>
+
+    </div>
+
+    <div class="panel">
+        <h3 class="panel-title">By Category</h3>
+
+        <div th:each="entry, stat : ${categoryTotals}"
+             class="category-row">
+
+            <div class="category-row-top">
+                <span th:text="${entry.key}"></span>
+
+                <span class="category-amount"
+                      th:text="'¥ ' + ${#numbers.formatDecimal(entry.value, 1, 'COMMA', 0, 'POINT')}">
+                </span>
+            </div>
+
+            <div class="bar-bg">
+                <div class="bar-fill"
+                     th:classappend="'c' + (${stat.index} % 4)"
+                     th:style="'width: ' + (${total > 0 ? entry.value / total * 100 : 0}) + '%'">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="panel">
+        <h3 class="panel-title">Category Chart</h3>
+
+        <div class="chart-wrap">
+            <canvas id="categoryChart"></canvas>
+        </div>
+    </div>
+
+    <h3 class="section-title">Monthly Total</h3>
+
+    <div class="stats-grid">
+
+        <div class="stat-card accent-purple"
+             th:each="entry : ${monthlyTotals}">
+
+            <p class="stat-label" th:text="${entry.key}"></p>
+
+            <p class="stat-value"
+               th:text="'¥ ' + ${#numbers.formatDecimal(entry.value, 1, 'COMMA', 0, 'POINT')}">
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<script th:inline="javascript">
+
+    // Controller bata Category name ra amount line
+    const labels = /*[[${categoryTotals.keySet()}]]*/ [];
+    const values = /*[[${categoryTotals.values()}]]*/ [];
+
+    // Chart colors
+    const colors = ['#7F77DD', '#D85A30', '#1D9E75', '#EF9F27'];
+
+    // Doughnut Chart
+    new Chart(document.getElementById('categoryChart'), {
+
+        type: 'doughnut',
+
+        data: {
+            labels: labels,
+
+            datasets: [{
+                data: values,
+
+                backgroundColor: values.map(
+                    (v, i) => colors[i % colors.length]
+                ),
+
+                borderWidth: 2,
+                borderColor: '#ffffff'
+            }]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            aspectRatio: 1,
+
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                },
+
+                tooltip: {
+                    callbacks: {
+                        label: (item) =>
+                            item.label + ': ¥' +
+                            item.parsed.toLocaleString()
+                    }
+                }
+            }
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

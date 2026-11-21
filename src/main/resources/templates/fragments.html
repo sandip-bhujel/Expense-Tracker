@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="preconnect" href="=https://font.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
+
+
+
+</head>
+<body>
+<!--active le kun page ma cha bhanney highloight garcha -->
+<nav th:fragment="navbar(active)" class="navbar">
+   <div class="navbar-brand">Kharcha Tracker</div>
+ <button type="button" class="hamburger" aria-label="Menu"
+         onclick="document.querySelector('.navbar-links').classList.toggle('open')">
+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2.5" stroke-linecap="round">
+         <line x1="4" y1="6" x2="20" y2="6"/>
+         <line x1="4" y1="12" x2="20" y2="12"/>
+         <line x1="4" y1="18" x2="20" y2="18"/>
+
+     </svg>
+ </button>
+    <div class="navbar-links">
+
+        <a th:href="@{/dashboard}" class="nav-text"
+           th:classappend="${active== 'dashboard'} ? 'active'">Dashboard</a>
+
+<!--        myexpense ma menu icon -->
+        <a th:href="@{/expenses-page}" class="nav-btn"
+           th:classappend="${active== 'list'} ? 'active'">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="3" stroke-linecap="round"> <!--3line row menu icon -->
+                <line x1="4" y1="6" x2="20" y2="6"/>
+                <line x1="4" y1="12" x2="20" y2="12"/>
+                <line x1="4" y1="18" x2="20" y2="18"/>
+
+            </svg>
+            My Expenses
+        </a>
+
+        <!--add expense ma add icon-->
+        <a th:href="@{/expenses-page/add}" class="nav-btn"
+           th:classappend="${active == 'add' } ? 'active'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="3.5" stroke-linecap="round"> <!--plus add icon -->
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+
+            </svg>
+            Add Expense
+        </a>
+
+        <!--nav bar ma logout button ra login gareko user ko name dekhincha -->
+        <div class="nav-account">
+<span class="nav-user" sec:authentication="name"></span>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <button type="submit" class="logout-btn">Logout</button>
+        </form>
+        </div>
+
+    </div>
+
+</nav>
+
+
+</body>
+</html>
