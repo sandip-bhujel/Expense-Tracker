@@ -1,0 +1,8 @@
+{
+  "name": "Ghar Kharcha",
+  "short_name": "Kharcha",
+  "start_url": "/login",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6c63ff"
+}
