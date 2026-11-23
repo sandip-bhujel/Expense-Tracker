@@ -48,7 +48,14 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception  {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/*.css", "/login", "/manifest.json", "/icons/**").permitAll() // css, login, manifest ra icon login nagari khulchha
+//                        .requestMatchers("/*.css", "/login", "/manifest.json", "/icons/**").permitAll() // css, login, manifest ra icon login nagari khulchha
+                        .requestMatchers(
+                                "/login",
+                                "/manifest.json",
+                                "/icon-192.png",
+                                "/icon-512.png",
+                                "/style.css"
+                        ).permitAll()
                         .anyRequest().authenticated()) //baki sabai page ma log in chaincha
                 .formLogin(form -> form
                         .loginPage("/login") // afno login page
