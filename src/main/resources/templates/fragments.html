@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <th:block th:replace="~{fragments :: pwa-head}"></th:block>
+    <link rel="icon" type="image/png" th:href="@{/icons/icon-512.png}"> <!-- browser tab ko icon -->
+    <link rel="apple-touch-icon" th:href="@{/icons/icon-512.png}"> <!-- iPhone ko home screen icon add garni  -->
     <link rel="preconnect" href="=https://font.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=poppins:wght@400;600&display=swap" rel="stylesheet">
 
@@ -12,6 +15,7 @@
 </head>
 <body>
 <!--active le kun page ma cha bhanney highloight garcha -->
+
 <nav th:fragment="navbar(active)" class="navbar">
    <div class="navbar-brand">Kharcha Tracker</div>
  <button type="button" class="hamburger" aria-label="Menu"
@@ -65,7 +69,16 @@
     </div>
 
 </nav>
-
+<!-- phone ko home screen ko lagi tag haru, sabai page ma yehi use garchhau -->
+<th:block th:fragment="pwa-head">
+    <link rel="manifest" th:href="@{/manifest.json}">
+    <link rel="icon" type="image/png" th:href="@{/icons/icon-192.png}"> <!-- browser tab ko icon -->
+    <link rel="apple-touch-icon" th:href="@{/icons/apple-touch-icon.png}"> <!-- iPhone ko home screen icon -->
+    <meta name="theme-color" content="#534AB7"> <!-- phone ko mathi ko bar purple huncha -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Kharcha"> <!-- iPhone ma icon ko naam -->
+</th:block>
 
 </body>
 </html>
